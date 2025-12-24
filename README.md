@@ -1,4 +1,4 @@
-# DevOps Project
+# GitHub Actions
 
 This repository contains DevOps automation and CI/CD pipeline examples using GitHub Actions.
 
