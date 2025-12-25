@@ -1,0 +1,19 @@
+name: Basic Matrix
+on: workflow_dispatch
+
+jobs: 
+    matrix:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16, 18, 20]
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: setup node
+              uses: actions/setup-node@v4
+              with:
+                node-version: ${{ matrix.node-version}}
+            
+            - name: Run tests
+              run: npm test
