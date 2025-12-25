@@ -1,0 +1,28 @@
+name: Deploy
+on:
+    push:
+        branches: [main,develop]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            
+            - name: Set environment
+              id: set-env
+              run: |
+                if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+                    echo "environment=production" >> $GITHUB_OUTPUT
+                    echo "url=https://prod.example.com" >> $GITHUB_OUTPUT
+                else
+                    echo "environment=develop" >> $GITHUB_OUTPUT
+                    echo "url=https://develop.example.com" >> $GITHUB_OUTPUT
+                fi
+
+            - name: Deploy
+              env:
+                DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN}}
+              run: |
+                echo "Deployinng to ${{ steps.set-env.outputs.environment }}"
+                echo "URL: ${{ steps.set-env.outputs.url}}"
