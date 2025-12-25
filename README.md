@@ -1,35 +1,28 @@
 # DevOps Project
 
-This repository contains DevOps automation and CI/CD pipeline examples using GitHub Actions.
+This repository contains concise DevOps automation and CI/CD pipeline examples using GitHub Actions.
 
-## Repository Structure
+## Minimal Node.js Example
 
-- `.github/workflows/` — Contains GitHub Actions workflow YAML files for CI/CD automation.
-    - `complete-pipeline.yml` — Full pipeline with lint, test, build, and deploy jobs.
-    - Other workflow files for various automation scenarios.
-- `README.md` — Project documentation.
+A minimal Node.js project is included to ensure the workflows run successfully:
+- [`index.js`](index.js:1): Minimal executable script
+- [`package.json`](package.json): Project manifest with `start`, `test`, and `build` scripts
+
+### Usage
+
+```bash
+npm start   # Runs index.js
+npm test    # Always succeeds (no tests specified)
+npm build   # Always succeeds (no build step required)
+```
 
 ## Workflows
 
-### Complete Pipeline
-The [`complete-pipeline.yml`](.github/workflows/complete-pipeline.yml:1) workflow demonstrates a multi-stage CI/CD pipeline:
-- **Lint**: Runs linter checks.
-- **Test**: Runs tests after linting.
-- **Build**: Builds the project after tests pass.
-- **Deploy**: Deploys to production from the `main` branch after a successful build.
+### Node.js CI ([`.github/workflows/node-ci.yml`](.github/workflows/node-ci.yml:1))
+Runs on every push and pull request. Installs dependencies, runs tests, and executes a build step for the minimal Node.js project. Ensures the pipeline passes even with minimal code.
 
-### How to Use
-1. Clone this repository.
-2. Push changes to the `main` branch or open a pull request targeting `main` to trigger the workflows.
-3. Monitor workflow runs in the GitHub Actions tab.
-
-## Requirements
-- GitHub repository with Actions enabled.
-- Project source code and configuration as needed for your stack.
-
-## Customization
-- Edit the workflow YAML files in `.github/workflows/` to fit your project's needs.
-- Add or modify jobs and steps as required.
+### Environment-Specific Deployments ([`.github/workflows/env-specific-deployments.yml`](.github/workflows/env-specific-deployments.yml:1))
+Triggers on pushes to `main` and `develop` branches. Sets deployment environment variables based on branch, then simulates a deployment step with environment-specific output. Uses a secret token for deployment.
 
 ## License
 MIT License.
