@@ -1,0 +1,11 @@
+{
+  "name": "minimal-node-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo 'No tests specified' && exit 0",
+    "build": "echo 'No build step required'"
+  },
+  "license": "MIT"
+}
