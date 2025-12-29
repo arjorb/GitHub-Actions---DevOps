@@ -1,0 +1,17 @@
+name: Deploy App
+on: push
+
+jobs:
+    deploy-staging:
+        uses: ./.github/workflows/reusable-deploy.yml
+        with:
+            environment: staging
+        secrets:
+            deploy-token: ${{ secrets.STAGING_TOKEN}}
+    deploy-prod:
+        uses: ./.github/workflows/reusable-deploy.yml
+        with:
+            environment: production
+        secrets:
+            deploy-token: ${{secrets.PROD_TOKEN}}
+        
